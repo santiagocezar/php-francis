@@ -54,17 +54,29 @@
         echo "</tr>";
     }
     echo "</table>";
+
+    echo "<br>";
     
+    echo "<table>";
+    foreach ($matrix as $r => $row) {
+        echo "<tr>";
+        foreach ($row as $c => $col) {
+            if ($r == $c) {
+                $matrix[$r][$c] = $matrix[$h-1][$c];
+                $matrix[$h-1][$c] = $col;
+            }
+            $col = $matrix[$r][$c];
+            echo "<td>$col</td>";
+        }
+        echo "</tr>";
+    }
+    echo "</table>";
+
     $promedio = round($total / $w / $h, 2);
 
-    foreach ($ventasPorVendedor as $v => $venta) {
-        if ($venta < $vendedorMinVentas) {
-            $vendedorMin = $v;
-            $vendedorMinVentas = $v;
-        }
-    }
-
-    echo "<p>Llovió más en el campo N°".($lluviaMaxCampo+1).", Zona N°".($lluviaMaxZona + 1) . ".</p>";
+    echo "<p><strong>Promedio total:</strong> $promedio</p>";
+    echo "<p><strong>Mínimo:</strong> $min</p>";
+    echo "<p><strong>Máximo:</strong> $max</p>";
     ?>
 </body>
 
